@@ -169,14 +169,19 @@
         ];
 
         const initialVoters = [
-            { nisn: "1234567891", role: "siswa", hasVoted: false },
-            { nisn: "1234567892", role: "siswa", hasVoted: false },
+            { nis: "4979", role: "siswa", hasVoted: false },
             { token: "QRGURU-001", role: "guru", name: "Pak Budi, S.Pd", hasVoted: false },
             { username: "admin", pin: "admin123", role: "admin" }
         ];
 
+        // Force reset or initialize DPT to ensure 4979 is active immediately
         if (!localStorage.getItem('evote_candidates')) localStorage.setItem('evote_candidates', JSON.stringify(initialCandidates));
-        if (!localStorage.getItem('evote_voters')) localStorage.setItem('evote_voters', JSON.stringify(initialVoters));
+        
+        let storedVoters = JSON.parse(localStorage.getItem('evote_voters') || '[]');
+        if (!storedVoters.some(v => v.nis === "4979")) {
+            localStorage.setItem('evote_voters', JSON.stringify(initialVoters));
+        }
+
         if (!localStorage.getItem('evote_results')) localStorage.setItem('evote_results', JSON.stringify({ "1": 45, "2": 30, "3": 15, "4": 10 })); 
         if (!localStorage.getItem('evote_status')) localStorage.setItem('evote_status', 'open');
 
@@ -230,12 +235,12 @@
 
                     <form id="login-form-siswa" class="space-y-6 block relative z-10">
                         <div class="space-y-1">
-                            <label class="block text-xs font-mono text-gray-400 uppercase tracking-wider">Identitas Siswa (NISN)</label>
+                            <label class="block text-xs font-mono text-gray-400 uppercase tracking-wider">Identitas Siswa (NIS)</label>
                             <div class="relative glow-border rounded-xl">
                                 <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                     <i data-lucide="scan-line" class="w-5 h-5 text-neonCyan"></i>
                                 </div>
-                                <input type="text" id="nisn" required class="pl-12 block w-full rounded-xl bg-gray-900/60 border border-glassBorder text-white py-3 focus:outline-none font-mono" placeholder="Masukkan NISN">
+                                <input type="text" id="nis" required class="pl-12 block w-full rounded-xl bg-gray-900/60 border border-glassBorder text-white py-3 focus:outline-none font-mono" placeholder="Masukkan NIS">
                             </div>
                         </div>
                         <button type="submit" class="w-full py-3.5 px-4 rounded-xl font-display font-bold text-black bg-gradient-to-r from-neonCyan to-blue-400 hover:from-white hover:to-neonCyan transition-all shadow-[0_0_20px_rgba(0,240,255,0.4)]">
@@ -245,9 +250,9 @@
 
                     <div id="login-form-guru" class="hidden space-y-4 relative z-10">
                         <div class="bg-gray-900/80 p-4 rounded-xl border border-glassBorder text-center">
-                            <div class="relative w-full overflow-hidden rounded-lg mb-2 border border-neonCyan/30 p-1 min-h-[220px] flex items-center justify-center bg-black/50">
+                            <div class="relative w-full overflow-hidden rounded-lg mb-2 border border-neonCyan/30 p-1 min-h-[200px] flex items-center justify-center bg-black/50">
                                 <div id="qr-reader" class="w-full"></div>
-                                <div id="camera-placeholder" class="text-xs text-gray-400 p-4">Kamera siap diaktifkan untuk scan token QR.</div>
+                                <div id="camera-placeholder" class="text-xs text-gray-400 p-4">Klik tombol di bawah untuk mengaktifkan kamera scanner QR.</div>
                             </div>
                             <div class="flex gap-2">
                                 <button type="button" onclick="initQrScanner()" class="w-1/2 py-2.5 bg-neonCyan/20 border border-neonCyan text-neonCyan font-mono text-xs font-bold rounded-lg hover:bg-neonCyan hover:text-black transition-all">MULAI KAMERA</button>
@@ -354,7 +359,7 @@
 
         function renderVoting() {
             const status = getStatus();
-            let userDisplay = currentUser.role === 'guru' ? `ID: ${currentUser.name}` : `NISN: ${currentUser.nisn}`;
+            let userDisplay = currentUser.role === 'guru' ? `ID: ${currentUser.name}` : `NIS: ${currentUser.nis}`;
 
             navActions.innerHTML = `
                 <div class="flex items-center space-x-4 bg-gray-900/80 rounded-full py-1.5 px-4 border border-glassBorder shadow-inner">
@@ -466,7 +471,7 @@
             localStorage.setItem('evote_results', JSON.stringify(results));
 
             let voters = getVoters();
-            let voterIndex = currentUser.role === 'siswa' ? voters.findIndex(v => v.nisn === currentUser.nisn) : voters.findIndex(v => v.token === currentUser.token);
+            let voterIndex = currentUser.role === 'siswa' ? voters.findIndex(v => v.nis === currentUser.nis) : voters.findIndex(v => v.token === currentUser.token);
             if(voterIndex > -1) { voters[voterIndex].hasVoted = true; localStorage.setItem('evote_voters', JSON.stringify(voters)); }
             
             renderView('success', { receiptId: 'TRX-' + Math.random().toString(36).substring(2, 9).toUpperCase(), timestamp: new Date().toLocaleString('id-ID') });
@@ -480,7 +485,7 @@
                     <h2 class="text-3xl font-display font-bold text-white mb-2 uppercase">Suara Berhasil Direkam</h2>
                     <p class="text-gray-400 mb-8 font-mono text-sm">Data voting Anda telah terenkripsi dengan aman ke sistem.</p>
                     <div class="bg-gray-900/60 rounded-xl p-5 text-sm text-left mb-8 border border-glassBorder font-mono">
-                        <div class="flex justify-between border-b border-glassBorder py-2"><span class="text-gray-400">ID Pemilih</span> <span class="font-bold text-white">${currentUser.nisn || currentUser.name}</span></div>
+                        <div class="flex justify-between border-b border-glassBorder py-2"><span class="text-gray-400">ID Pemilih</span> <span class="font-bold text-white">${currentUser.nis || currentUser.name}</span></div>
                         <div class="flex justify-between border-b border-glassBorder py-2"><span class="text-gray-400">Waktu</span> <span class="font-bold text-white">${data.timestamp}</span></div>
                         <div class="flex justify-between pt-2"><span class="text-gray-400">Resi Hash</span> <span class="font-bold text-neonCyan">${data.receiptId}</span></div>
                     </div>
@@ -588,12 +593,12 @@
                             if (parseFloat(percentage) > 3) {
                                 const { x, y } = element.tooltipPosition();
                                 ctx.save();
-                                ctx.font = 'bold 13px Inter, sans-serif';
+                                ctx.font = 'bold 14px Inter, sans-serif';
                                 ctx.fillStyle = '#ffffff';
                                 ctx.textAlign = 'center';
                                 ctx.textBaseline = 'middle';
                                 ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
-                                ctx.shadowBlur = 6;
+                                ctx.shadowBlur = 8;
                                 ctx.fillText(percentage, x, y);
                                 ctx.restore();
                             }
@@ -729,9 +734,9 @@
 
         function handleStudentLogin(e) {
             e.preventDefault();
-            const nisn = document.getElementById('nisn').value.trim();
-            const user = getVoters().find(v => v.nisn === nisn && v.role === 'siswa');
-            proceedLogin(user, "NISN tidak terdeteksi dalam database DPT.");
+            const nis = document.getElementById('nis').value.trim();
+            const user = getVoters().find(v => v.nis === nis && v.role === 'siswa');
+            proceedLogin(user, "NIS tidak terdeteksi dalam database DPT.");
         }
 
         function processQR(decodedText) {
