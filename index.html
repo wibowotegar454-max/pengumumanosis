@@ -111,22 +111,20 @@
                 <div class="flex items-center space-x-4">
                     <div class="relative w-12 h-12 flex-shrink-0 animate-float">
                         <div class="absolute inset-0 bg-neonCyan rounded-full blur-md opacity-30"></div>
-                        <img src="WhatsApp Image 2026-09-27 at 17.43.17 (2).jpeg" alt="Logo SMANIS" class="relative w-full h-full object-contain drop-shadow-lg z-10" onerror="this.src='https://placehold.co/100x100/0f172a/00F0FF?text=OSIS'">
+                        <img src="logo.jpg" alt="Logo SMANIS" class="relative w-full h-full object-cover rounded-full drop-shadow-lg z-10 border border-neonCyan/40" onerror="this.src='https://placehold.co/100x100/0f172a/00F0FF?text=OSIS'">
                     </div>
                     <div>
                         <span class="font-display font-bold text-2xl tracking-wider text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">DIGI-VOTE OSIS</span>
                         <p class="text-[10px] text-neonCyan font-mono tracking-widest uppercase">PEMILIHAN KETUA & WAKIL KETUA OSIS</p>
                     </div>
                 </div>
-                <div id="nav-actions" class="flex items-center space-x-4">
-                    <!-- Dynamic Nav Content -->
-                </div>
+                <div id="nav-actions" class="flex items-center space-x-4"></div>
             </div>
         </div>
     </nav>
 
     <main id="app-container" class="flex-grow flex items-center justify-center p-4 relative z-10">
-        <!-- Content injected dynamically via JS -->
+        <!-- Dynamic views -->
     </main>
 
     <footer class="glass-card mt-auto py-6 text-center text-sm border-t border-glassBorder text-gray-400">
@@ -143,53 +141,43 @@
         Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(15, 23, 42, 0.9)';
         Chart.defaults.plugins.tooltip.titleColor = '#fff';
 
-        // MOCK DATABASE
         const initialCandidates = [
             {
-                id: 1, number: "01", chairman: "Tegar Wibowo", viceChairman: "Siti Aminah",
-                slogan: "Cerdas, Kreatif, dan Berakhlak Mulia", photo: "https://placehold.co/400x500/0f172a/00F0FF?text=Paslon+1",
+                id: 1, number: "01", chairman: "Tegar Wibowo", viceChairman: "Alya Salsabila",
+                slogan: "Cerdas, Kreatif, dan Berakhlak Mulia", photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=60",
                 vision: "Menjadikan OSIS sebagai wadah aspirasi dan pengembangan kreativitas siswa.",
-                mission: ["Mengadakan kegiatan ekstrakurikuler yang inovatif.", "Meningkatkan kedisiplinan."],
-                program: "Festival Seni Tahunan"
+                mission: ["Mengadakan kegiatan ekstrakurikuler yang inovatif.", "Meningkatkan kedisiplinan."]
             },
             {
-                id: 2, number: "02", chairman: "Andi Permana", viceChairman: "Rina Amelia",
-                slogan: "Inovasi untuk Prestasi", photo: "https://placehold.co/400x500/0f172a/FBBF24?text=Paslon+2",
+                id: 2, number: "02", chairman: "Andi Permana", viceChairman: "Siti Rahma",
+                slogan: "Inovasi untuk Prestasi", photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60",
                 vision: "Mewujudkan lingkungan sekolah yang kompetitif dalam prestasi.",
-                mission: ["Mengoptimalkan peran mading.", "Menyelenggarakan tryout rutin."],
-                program: "Pekan Olahraga Antar Kelas"
+                mission: ["Mengoptimalkan peran mading.", "Menyelenggarakan tryout rutin."]
             },
             {
                 id: 3, number: "03", chairman: "Rizky Firmansyah", viceChairman: "Dewi Lestari",
-                slogan: "Bersama Membangun Karakter Bangsa", photo: "https://placehold.co/400x500/0f172a/10B981?text=Paslon+3",
+                slogan: "Bersama Membangun Karakter Bangsa", photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60",
                 vision: "Membentuk siswa yang berkarakter kuat dan peduli lingkungan.",
-                mission: ["Program Jumat Bersih.", "Pelatihan literasi digital."],
-                program: "Gerakan Bebas Sampah Plastik"
+                mission: ["Program Jumat Bersih.", "Pelatihan literasi digital."]
             },
             {
-                id: 4, number: "04", chairman: "Tariq Halilintar", viceChairman: "Aurel Hermansyah",
-                slogan: "Muda, Beda, dan Berprestasi", photo: "https://placehold.co/400x500/0f172a/A855F7?text=Paslon+4",
+                id: 4, number: "04", chairman: "Tariq Halilintar", viceChairman: "Nabila Putri",
+                slogan: "Muda, Beda, dan Berprestasi", photo: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=500&auto=format&fit=crop&q=60",
                 vision: "Menjadikan siswa-siswi unggul dalam berwirausaha.",
-                mission: ["Workshop kewirausahaan.", "Pemanfaatan media sosial positif."],
-                program: "Bazar Siswa Tahunan"
+                mission: ["Workshop kewirausahaan.", "Pemanfaatan media sosial positif."]
             }
         ];
 
         const initialVoters = [
-            { nisn: "1234567891", role: "siswa", hasVoted: false }, 
-            { token: "QRGURU-001", role: "guru", name: "Pak Budi", hasVoted: false },
-            { username: "admin", pin: "admin123", role: "admin" } 
+            { nisn: "1234567891", role: "siswa", hasVoted: false },
+            { nisn: "1234567892", role: "siswa", hasVoted: false },
+            { token: "QRGURU-001", role: "guru", name: "Pak Budi, S.Pd", hasVoted: false },
+            { username: "admin", pin: "admin123", role: "admin" }
         ];
-
-        let savedCandidates = JSON.parse(localStorage.getItem('evote_candidates') || '[]');
-        if(savedCandidates.length < 4) {
-            localStorage.removeItem('evote_candidates');
-            localStorage.removeItem('evote_results');
-        }
 
         if (!localStorage.getItem('evote_candidates')) localStorage.setItem('evote_candidates', JSON.stringify(initialCandidates));
         if (!localStorage.getItem('evote_voters')) localStorage.setItem('evote_voters', JSON.stringify(initialVoters));
-        if (!localStorage.getItem('evote_results')) localStorage.setItem('evote_results', JSON.stringify({ "1": 150, "2": 125, "3": 85, "4": 110 })); 
+        if (!localStorage.getItem('evote_results')) localStorage.setItem('evote_results', JSON.stringify({ "1": 45, "2": 30, "3": 15, "4": 10 })); 
         if (!localStorage.getItem('evote_status')) localStorage.setItem('evote_status', 'open');
 
         let currentUser = null;
@@ -221,7 +209,7 @@
                     <div class="text-center mb-8 relative z-10">
                         <div class="mx-auto w-24 h-24 mb-4 relative animate-float">
                             <div class="absolute inset-0 bg-white rounded-full blur-xl opacity-20"></div>
-                            <img src="WhatsApp Image 2026-09-27 at 17.43.17 (2).jpeg" alt="Logo" class="relative w-full h-full object-contain drop-shadow-[0_0_15px_rgba(0,240,255,0.6)]" onerror="this.src='https://placehold.co/100x100/0f172a/00F0FF?text=OSIS'">
+                            <img src="logo.jpg" alt="Logo" class="relative w-full h-full object-cover rounded-full drop-shadow-[0_0_15px_rgba(0,240,255,0.6)] border-2 border-neonCyan/50" onerror="this.src='https://placehold.co/100x100/0f172a/00F0FF?text=OSIS'">
                         </div>
                         <h2 class="text-3xl font-display font-bold text-white tracking-wide">DIGI-VOTE OSIS</h2>
                         <p class="text-sm text-neonCyan font-mono mt-2 flex items-center justify-center">
@@ -257,16 +245,24 @@
 
                     <div id="login-form-guru" class="hidden space-y-4 relative z-10">
                         <div class="bg-gray-900/80 p-4 rounded-xl border border-glassBorder text-center">
-                            <div class="relative w-full overflow-hidden rounded-lg mb-2 border border-neonCyan/30 p-1">
-                                <div id="qr-reader" class="w-full bg-black"></div>
+                            <div class="relative w-full overflow-hidden rounded-lg mb-2 border border-neonCyan/30 p-1 min-h-[220px] flex items-center justify-center bg-black/50">
+                                <div id="qr-reader" class="w-full"></div>
+                                <div id="camera-placeholder" class="text-xs text-gray-400 p-4">Kamera siap diaktifkan untuk scan token QR.</div>
                             </div>
-                            <p class="text-[11px] text-neonCyan font-mono mt-2 animate-pulse">Arahkan kamera ke QR Code Token Guru...</p>
+                            <div class="flex gap-2">
+                                <button type="button" onclick="initQrScanner()" class="w-1/2 py-2.5 bg-neonCyan/20 border border-neonCyan text-neonCyan font-mono text-xs font-bold rounded-lg hover:bg-neonCyan hover:text-black transition-all">MULAI KAMERA</button>
+                                <label class="w-1/2 py-2.5 bg-blue-600/20 border border-blue-500 text-blue-300 font-mono text-xs font-bold rounded-lg hover:bg-blue-600 hover:text-white transition-all cursor-pointer flex items-center justify-center">
+                                    <span>UPLOAD FOTO QR</span>
+                                    <input type="file" accept="image/*" class="hidden" onchange="scanQrFromFile(this)">
+                                </label>
+                            </div>
                         </div>
                         <div class="mt-4 pt-4 border-t border-glassBorder">
-                             <div class="flex space-x-2">
-                                <input type="text" id="manual-qr-token" class="block w-full rounded-lg bg-gray-900/60 border border-glassBorder text-white p-2.5 text-sm font-mono focus:border-neonCyan focus:outline-none" placeholder="Atau ketik token (QRGURU-XXX)">
-                                <button onclick="processQR(document.getElementById('manual-qr-token').value)" class="bg-glassBorder text-white px-4 py-2.5 rounded-lg text-sm hover:bg-neonCyan hover:text-black font-bold transition-all border border-glassBorder">Bypass</button>
-                             </div>
+                           <p class="text-[11px] text-gray-400 mb-2 font-mono">Atau masukkan token guru secara manual:</p>
+                           <div class="flex space-x-2">
+                                <input type="text" id="manual-qr-token" class="block w-full rounded-lg bg-gray-900/60 border border-glassBorder text-white p-2.5 text-sm font-mono focus:border-neonCyan focus:outline-none" placeholder="QRGURU-XXX">
+                                <button type="button" onclick="processQR(document.getElementById('manual-qr-token').value)" class="bg-glassBorder text-white px-4 py-2.5 rounded-lg text-sm hover:bg-neonCyan hover:text-black font-bold transition-all border border-glassBorder">Masuk</button>
+                           </div>
                         </div>
                     </div>
 
@@ -299,8 +295,7 @@
         let html5QrcodeScanner = null;
 
         function switchLoginTab(tab) {
-            const tabs = ['siswa', 'guru', 'admin'];
-            tabs.forEach(t => {
+            ['siswa', 'guru', 'admin'].forEach(t => {
                 const btn = document.getElementById(`tab-${t}`);
                 const form = document.getElementById(`login-form-${t}`);
                 if(t === tab) {
@@ -313,19 +308,47 @@
             });
 
             document.getElementById('login-error').classList.add('hidden');
+            if (tab !== 'guru') stopQrScanner();
+        }
 
-            if (tab === 'guru') {
-                if (!html5QrcodeScanner) {
-                    setTimeout(() => {
-                        html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", { fps: 10, qrbox: {width: 250, height: 250} }, false);
-                        html5QrcodeScanner.render(processQR, () => {});
-                    }, 100);
+        function initQrScanner() {
+            const placeholder = document.getElementById('camera-placeholder');
+            if (placeholder) placeholder.style.display = 'none';
+
+            if (!html5QrcodeScanner) {
+                try {
+                    html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", { 
+                        fps: 10, 
+                        qrbox: { width: 220, height: 220 },
+                        aspectRatio: 1.0
+                    }, false);
+                    html5QrcodeScanner.render(processQR, (err) => {});
+                } catch (e) {
+                    console.error("Camera Init Error:", e);
+                    showLoginError("Gagal membuka kamera. Pastikan browser diizinkan atau gunakan fitur Upload Foto QR.");
                 }
-            } else {
-                if (html5QrcodeScanner) {
-                    html5QrcodeScanner.clear().catch(e => console.error(e));
-                    html5QrcodeScanner = null;
-                }
+            }
+        }
+
+        function scanQrFromFile(inputElement) {
+            if (inputElement.files && inputElement.files[0]) {
+                const file = inputElement.files[0];
+                const html5QrCode = new Html5Qrcode("qr-reader");
+                html5QrCode.scanFile(file, true)
+                    .then(decodedText => {
+                        html5QrCode.clear();
+                        processQR(decodedText);
+                    })
+                    .catch(err => {
+                        showLoginError("QR Code tidak terbaca dari foto. Coba pilih foto QR Code yang lebih jelas.");
+                    });
+            }
+        }
+
+        function stopQrScanner() {
+            if (html5QrcodeScanner) {
+                html5QrcodeScanner.clear().catch(e => console.error(e));
+                html5QrcodeScanner = null;
             }
         }
 
@@ -361,7 +384,7 @@
                         </div>
                         <div class="p-6 flex-grow flex flex-col">
                             <h3 class="text-2xl font-display font-bold text-white mb-1 group-hover:text-neonCyan transition-colors">${c.chairman}</h3>
-                            <h4 class="text-sm font-mono text-gray-400 uppercase tracking-widest border-b border-glassBorder pb-3">x ${c.viceChairman}</h4>
+                            <h4 class="text-sm font-mono text-gray-400 uppercase tracking-widest border-b border-glassBorder pb-3">& ${c.viceChairman}</h4>
                             <p class="text-sm italic text-gray-300 my-4 flex-grow border-l-2 border-neonCyan pl-3 bg-white/5 rounded-r-lg">"${c.slogan}"</p>
                             
                             <div class="space-y-3 mt-auto">
@@ -399,7 +422,7 @@
                 <div class="p-6 sm:p-8 overflow-y-auto custom-scrollbar">
                     <div class="flex flex-col sm:flex-row items-center gap-8 mb-8 border-b border-glassBorder pb-8">
                         <img src="${candidate.photo}" alt="Foto" class="w-32 h-32 rounded-2xl object-cover border border-neonCyan/50 shadow-xl" onerror="this.src='https://placehold.co/200x200/0f172a/00F0FF?text=Paslon'">
-                        <div class="text-center sm:text-left flex-grow"><h3 class="text-3xl font-display font-bold text-white">${candidate.chairman}</h3><h4 class="text-lg font-mono text-gray-400 mb-4">x ${candidate.viceChairman}</h4><p class="text-sm font-mono bg-neonCyan/10 text-neonCyan py-2 px-4 rounded-lg inline-block border border-neonCyan/30">"${candidate.slogan}"</p></div>
+                        <div class="text-center sm:text-left flex-grow"><h3 class="text-3xl font-display font-bold text-white">${candidate.chairman}</h3><h4 class="text-lg font-mono text-gray-400 mb-4">& ${candidate.viceChairman}</h4><p class="text-sm font-mono bg-neonCyan/10 text-neonCyan py-2 px-4 rounded-lg inline-block border border-neonCyan/30">"${candidate.slogan}"</p></div>
                     </div>
                     <div class="space-y-8">
                         <div><h5 class="font-display font-bold text-xl text-white mb-3 flex items-center border-l-4 border-neonCyan pl-3 uppercase">Visi Utama</h5><p class="bg-gray-900/60 p-5 rounded-xl border border-glassBorder text-gray-300">${candidate.vision}</p></div>
@@ -446,7 +469,7 @@
             let voterIndex = currentUser.role === 'siswa' ? voters.findIndex(v => v.nisn === currentUser.nisn) : voters.findIndex(v => v.token === currentUser.token);
             if(voterIndex > -1) { voters[voterIndex].hasVoted = true; localStorage.setItem('evote_voters', JSON.stringify(voters)); }
             
-            renderView('success', { receiptId: 'TRX-' + Math.random().toString(36).substr(2, 9).toUpperCase(), timestamp: new Date().toLocaleString('id-ID') });
+            renderView('success', { receiptId: 'TRX-' + Math.random().toString(36).substring(2, 9).toUpperCase(), timestamp: new Date().toLocaleString('id-ID') });
         }
 
         function renderSuccess(data) {
@@ -496,12 +519,17 @@
                             <div id="admin-leaderboard" class="space-y-5 flex-grow"></div>
                         </div>
                         <div class="glass-card p-6 rounded-3xl lg:col-span-2 border-t-4 border-neonCyan flex flex-col">
-                             <div class="flex justify-between items-center mb-6"><h3 class="text-lg font-display font-bold text-white flex items-center"><i data-lucide="bar-chart-2" class="w-5 h-5 mr-3 text-neonCyan"></i> ANALISIS TELEMETRI</h3></div>
+                             <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-display font-bold text-white flex items-center"><i data-lucide="bar-chart-2" class="w-5 h-5 mr-3 text-neonCyan"></i> ANALISIS TELEMETRI</h3>
+                                <div class="flex bg-gray-900/80 p-1 rounded-xl border border-glassBorder space-x-1">
+                                    <button onclick="setChartType('bar')" id="btn-chart-bar" class="px-3 py-1.5 rounded-lg bg-neonCyan text-black font-mono text-xs font-bold transition-all">Batang</button>
+                                    <button onclick="setChartType('doughnut')" id="btn-chart-doughnut" class="px-3 py-1.5 rounded-lg text-gray-400 font-mono text-xs font-bold hover:text-white transition-all">Bulat</button>
+                                </div>
+                             </div>
                             <div class="relative flex-grow min-h-[350px] w-full flex justify-center items-center"><canvas id="mainChart"></canvas></div>
                         </div>
                     </div>
 
-                    <!-- Panel Generator Token Guru dengan Tombol Plus -->
                     <div class="glass-card p-6 rounded-3xl border-t-4 border-gold bg-gradient-to-br from-gray-900 to-black relative overflow-hidden">
                         <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-gold rounded-full mix-blend-screen filter blur-[100px] opacity-10 pointer-events-none"></div>
                         <div class="flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
@@ -515,9 +543,7 @@
                         </div>
                         
                         <div id="qr-result-container" class="mt-8 pt-8 border-t border-glassBorder hidden text-center">
-                            <div id="generated-qr" class="inline-block">
-                                <!-- QR Result HTML Injected Here -->
-                            </div>
+                            <div id="generated-qr" class="inline-block"></div>
                         </div>
                     </div>
                 </div>
@@ -529,6 +555,53 @@
         }
 
         let mainChartInstance = null;
+        let currentChartType = 'bar';
+
+        function setChartType(type) {
+            currentChartType = type;
+            const btnBar = document.getElementById('btn-chart-bar');
+            const btnDoughnut = document.getElementById('btn-chart-doughnut');
+            
+            if (type === 'bar') {
+                btnBar.className = "px-3 py-1.5 rounded-lg bg-neonCyan text-black font-mono text-xs font-bold transition-all";
+                btnDoughnut.className = "px-3 py-1.5 rounded-lg text-gray-400 font-mono text-xs font-bold hover:text-white transition-all";
+            } else {
+                btnDoughnut.className = "px-3 py-1.5 rounded-lg bg-neonCyan text-black font-mono text-xs font-bold transition-all";
+                btnBar.className = "px-3 py-1.5 rounded-lg text-gray-400 font-mono text-xs font-bold hover:text-white transition-all";
+            }
+            updateAdminData();
+        }
+
+        const percentageLabelPlugin = {
+            id: 'percentageLabelPlugin',
+            afterDatasetsDraw(chart) {
+                if (chart.config.type !== 'doughnut') return;
+                const { ctx } = chart;
+                chart.data.datasets.forEach((dataset, datasetIndex) => {
+                    const meta = chart.getDatasetMeta(datasetIndex);
+                    if (!meta.hidden) {
+                        meta.data.forEach((element, index) => {
+                            const dataVal = dataset.data[index];
+                            const total = dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = total > 0 ? ((dataVal / total) * 100).toFixed(1) + '%' : '0%';
+                            
+                            if (parseFloat(percentage) > 3) {
+                                const { x, y } = element.tooltipPosition();
+                                ctx.save();
+                                ctx.font = 'bold 13px Inter, sans-serif';
+                                ctx.fillStyle = '#ffffff';
+                                ctx.textAlign = 'center';
+                                ctx.textBaseline = 'middle';
+                                ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+                                ctx.shadowBlur = 6;
+                                ctx.fillText(percentage, x, y);
+                                ctx.restore();
+                            }
+                        });
+                    }
+                });
+            }
+        };
 
         function updateAdminData() {
             if(!document.getElementById('mainChart')) { clearInterval(window.adminInterval); return; }
@@ -540,60 +613,72 @@
             const totalDPT = voters.length;
             const totalVoted = voters.filter(v => v.hasVoted).length;
             const turnout = totalDPT > 0 ? ((totalVoted / totalDPT) * 100).toFixed(1) : 0;
+            const totalCandidateVotes = Object.values(results).reduce((a, b) => a + b, 0);
 
             const metrics = [
                 { title: 'TOTAL DPT', val: totalDPT, icon: 'users', color: 'text-blue-400', border: 'border-blue-500/50' },
                 { title: 'SUARA MASUK', val: totalVoted, icon: 'download', color: 'text-neonCyan', border: 'border-neonCyan' },
                 { title: 'PARTISIPASI', val: turnout+'%', icon: 'activity', color: 'text-emerald-400', border: 'border-emerald-500/50' },
-                { title: 'SISA DPT', val: totalDPT - totalVoted, icon: 'clock', color: 'text-orange-400', border: 'border-orange-500/50' }
+                { title: 'SISA DPT', val: Math.max(0, totalDPT - totalVoted), icon: 'clock', color: 'text-orange-400', border: 'border-orange-500/50' }
             ];
 
-            document.getElementById('admin-metrics').innerHTML = metrics.map(m => `
-                <div class="glass-card p-5 rounded-2xl flex justify-between border-l-4 ${m.border}">
-                    <div><p class="text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-1">${m.title}</p><h4 class="text-3xl font-display font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">${m.val}</h4></div>
-                    <div class="p-3 rounded-xl bg-white/5 border border-glassBorder ${m.color} opacity-80"><i data-lucide="${m.icon}" class="w-6 h-6"></i></div>
-                </div>
-            `).join('');
-            lucide.createIcons();
+            const metricsEl = document.getElementById('admin-metrics');
+            if (metricsEl) {
+                metricsEl.innerHTML = metrics.map(m => `
+                    <div class="glass-card p-5 rounded-2xl flex justify-between border-l-4 ${m.border}">
+                        <div><p class="text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-1">${m.title}</p><h4 class="text-3xl font-display font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">${m.val}</h4></div>
+                        <div class="p-3 rounded-xl bg-white/5 border border-glassBorder ${m.color} opacity-80"><i data-lucide="${m.icon}" class="w-6 h-6"></i></div>
+                    </div>
+                `).join('');
+                lucide.createIcons();
+            }
 
             const colors = ['bg-blue-500', 'bg-gold', 'bg-emerald-500', 'bg-purple-500'];
             
-            document.getElementById('admin-leaderboard').innerHTML = candidates.map((c, i) => {
-                const votes = results[c.id] || 0;
-                const pct = totalVoted > 0 ? ((votes/totalVoted)*100).toFixed(1) : 0;
-                return `
-                    <div class="mb-2">
-                        <div class="flex justify-between items-end mb-2">
-                            <div><span class="text-xs font-mono text-gray-400">PASLON 0${c.number}</span><p class="text-sm font-bold text-white">${c.chairman}</p></div>
-                            <div class="text-right"><span class="text-lg font-bold text-white">${votes}</span> <span class="text-xs font-mono text-gray-400 ml-1">[ ${pct}% ]</span></div>
+            const leaderboardEl = document.getElementById('admin-leaderboard');
+            if (leaderboardEl) {
+                leaderboardEl.innerHTML = candidates.map((c, i) => {
+                    const votes = results[c.id] || 0;
+                    const pct = totalCandidateVotes > 0 ? ((votes / totalCandidateVotes) * 100).toFixed(1) : 0;
+                    return `
+                        <div class="mb-2">
+                            <div class="flex justify-between items-end mb-2">
+                                <div><span class="text-xs font-mono text-gray-400">PASLON 0${c.number}</span><p class="text-sm font-bold text-white">${c.chairman}</p></div>
+                                <div class="text-right"><span class="text-lg font-bold text-white">${votes}</span> <span class="text-xs font-mono text-gray-400 ml-1">[ ${pct}% ]</span></div>
+                            </div>
+                            <div class="w-full bg-gray-900/80 rounded-full h-2.5 border border-glassBorder"><div class="${colors[i]} h-full rounded-full transition-all duration-1000" style="width: ${pct}%"></div></div>
                         </div>
-                        <div class="w-full bg-gray-900/80 rounded-full h-2.5 border border-glassBorder"><div class="${colors[i]} h-full rounded-full transition-all duration-1000" style="width: ${pct}%"></div></div>
-                    </div>
-                `;
-            }).join('');
+                    `;
+                }).join('');
+            }
 
             const ctx = document.getElementById('mainChart').getContext('2d');
             if(mainChartInstance) mainChartInstance.destroy();
             
             mainChartInstance = new Chart(ctx, {
-                type: 'bar',
+                type: currentChartType,
                 data: {
                     labels: candidates.map(c => `Paslon 0${c.number}`),
                     datasets: [{
                         label: 'Perolehan Suara',
                         data: candidates.map(c => results[c.id] || 0),
                         backgroundColor: ['#3B82F6', '#FBBF24', '#10B981', '#A855F7'],
-                        borderRadius: 4
+                        borderRadius: currentChartType === 'bar' ? 4 : 0,
+                        borderWidth: currentChartType === 'doughnut' ? 2 : 0,
+                        borderColor: '#030712'
                     }]
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
+                    plugins: { 
+                        legend: { display: currentChartType === 'doughnut', position: 'bottom', labels: { color: '#e5e7eb', font: { family: 'Outfit', size: 12 } } } 
+                    },
+                    scales: currentChartType === 'bar' ? {
                         y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af', stepSize: 1 } },
                         x: { grid: { display: false }, ticks: { color: '#e5e7eb', font: {family: 'Outfit', weight: 'bold'} } }
-                    }
-                }
+                    } : {}
+                },
+                plugins: [percentageLabelPlugin]
             });
         }
 
@@ -668,7 +753,7 @@
             if (user) {
                 currentUser = user; 
                 errorDiv.classList.add('hidden');
-                if (html5QrcodeScanner) { html5QrcodeScanner.clear().catch(e=>console.error(e)); html5QrcodeScanner = null; }
+                stopQrScanner();
                 
                 if (user.role === 'admin') renderView('admin');
                 else if (user.hasVoted) renderView('already_voted');
@@ -682,7 +767,7 @@
         function logout() {
             currentUser = null;
             if(window.adminInterval) clearInterval(window.adminInterval);
-            if (html5QrcodeScanner) { html5QrcodeScanner.clear().catch(e=>console.error(e)); html5QrcodeScanner = null; }
+            stopQrScanner();
             renderView('login');
         }
 
